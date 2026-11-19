@@ -1,1476 +1,319 @@
-```html
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>YOUR COMPANY</title>
-
-    <style>
-
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: #080808;
-            color: white;
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* =========================
-           NAVBAR
-        ========================= */
-
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 85px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 5%;
-
-            z-index: 1000;
-
-            background: linear-gradient(
-                to bottom,
-                rgba(0,0,0,.8),
-                transparent
-            );
-        }
-
-        .logo-box {
-            width: 65px;
-            height: 65px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border: 1px solid rgba(255,255,255,.25);
-            background: rgba(0,0,0,.35);
-
-            backdrop-filter: blur(10px);
-        }
-
-        .logo-box img {
-            width: 80%;
-            height: 80%;
-            object-fit: contain;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 12px;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-
-            padding: 11px 18px;
-
-            border: 1px solid rgba(255,255,255,.15);
-            border-radius: 30px;
-
-            font-size: 13px;
-
-            transition: .3s;
-        }
-
-        .nav-links a:hover {
-            background: white;
-            color: black;
-        }
-
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            height: 100vh;
-            min-height: 650px;
-
-            position: relative;
-
-            display: flex;
-            align-items: center;
-
-            overflow: hidden;
-        }
-
-        .hero-video {
-            position: absolute;
-
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            opacity: .9;
-
-            z-index: -2;
-        }
-
-        .hero::after {
-            content: "";
-
-            position: absolute;
-
-            inset: 0;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(0,0,0,.9),
-                    rgba(0,0,0,.35),
-                    rgba(0,0,0,.8)
-                );
-
-            z-index: -1;
-        }
-
-        .hero-content {
-            width: 90%;
-            max-width: 1200px;
-
-            margin: auto;
-        }
-
-        .hero-small {
-            font-size: 13px;
-            letter-spacing: 4px;
-
-            opacity: .6;
-
-            margin-bottom: 25px;
-        }
-
-        .hero h1 {
-            font-size: clamp(55px, 9vw, 150px);
-
-            line-height: .85;
-
-            font-weight: 800;
-
-            letter-spacing: -7px;
-
-            max-width: 1100px;
-        }
-
-        .hero h2 {
-            margin-top: 25px;
-
-            font-size: clamp(20px, 3vw, 42px);
-
-            font-weight: 400;
-
-            color: rgba(255,255,255,.75);
-        }
-
-        .hero p {
-            max-width: 600px;
-
-            margin-top: 25px;
-
-            line-height: 1.8;
-
-            color: rgba(255,255,255,.55);
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 12px;
-
-            margin-top: 35px;
-        }
-
-        .btn {
-            text-decoration: none;
-
-            padding: 15px 25px;
-
-            border-radius: 40px;
-
-            font-size: 13px;
-
-            border: 1px solid rgba(255,255,255,.25);
-
-            color: white;
-
-            transition: .3s;
-        }
-
-        .btn.primary {
-            background: white;
-            color: black;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-        }
-
-
-        /* =========================
-           GENERAL SECTION
-        ========================= */
-
-        section {
-            padding: 130px 5%;
-        }
-
-        .section-title {
-            display: flex;
-
-            justify-content: space-between;
-            align-items: end;
-
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: clamp(40px, 6vw, 85px);
-
-            letter-spacing: -4px;
-        }
-
-        .section-title span {
-            color: rgba(255,255,255,.4);
-
-            font-size: 13px;
-
-            letter-spacing: 2px;
-        }
-
-
-        /* =========================
-           VIDEO SECTION
-        ========================= */
-
-        .video-section {
-            min-height: 100vh;
-
-            display: flex;
-            flex-direction: column;
-
-            justify-content: center;
-        }
-
-        .video-stage {
-            position: relative;
-
-            width: 100%;
-            height: 650px;
-
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            overflow: hidden;
-        }
-
-        .video-card {
-            position: absolute;
-
-            width: 62%;
-            height: 75%;
-
-            border-radius: 8px;
-
-            overflow: hidden;
-
-            cursor: pointer;
-
-            transition:
-                transform .8s cubic-bezier(.2,.8,.2,1),
-                opacity .8s,
-                filter .8s;
-
-            background: #111;
-
-            box-shadow: 0 30px 80px rgba(0,0,0,.5);
-        }
-
-        .video-card video {
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            display: block;
-        }
-
-        .video-card.active {
-            transform: translateX(0) scale(1);
-
-            opacity: 1;
-
-            z-index: 5;
-
-            filter: brightness(1);
-        }
-
-        .video-card.prev {
-            transform: translateX(-65%) scale(.58);
-
-            opacity: .45;
-
-            z-index: 2;
-
-            filter: brightness(.4);
-        }
-
-        .video-card.next {
-            transform: translateX(65%) scale(.58);
-
-            opacity: .45;
-
-            z-index: 2;
-
-            filter: brightness(.4);
-        }
-
-        .video-card.hidden {
-            opacity: 0;
-
-            transform: scale(.4);
-
-            z-index: 0;
-        }
-
-        .video-overlay {
-            position: absolute;
-
-            bottom: 0;
-            left: 0;
-
-            width: 100%;
-
-            padding: 30px;
-
-            background: linear-gradient(
-                transparent,
-                rgba(0,0,0,.9)
-            );
-        }
-
-        .video-overlay span {
-            font-size: 13px;
-
-            letter-spacing: 3px;
-        }
-
-
-        /* =========================
-           VIDEO CONTROLS
-        ========================= */
-
-        .video-controls {
-            display: flex;
-
-            align-items: center;
-            justify-content: center;
-
-            gap: 20px;
-
-            margin-top: 30px;
-        }
-
-        .arrow {
-            width: 50px;
-            height: 50px;
-
-            border-radius: 50%;
-
-            border: 1px solid rgba(255,255,255,.2);
-
-            background: transparent;
-
-            color: white;
-
-            cursor: pointer;
-
-            font-size: 20px;
-
-            transition: .3s;
-        }
-
-        .arrow:hover {
-            background: white;
-            color: black;
-        }
-
-        .counter {
-            min-width: 80px;
-
-            text-align: center;
-
-            font-size: 12px;
-
-            letter-spacing: 3px;
-
-            color: rgba(255,255,255,.5);
-        }
-
-        .dots {
-            display: flex;
-
-            gap: 7px;
-
-            justify-content: center;
-
-            margin-top: 20px;
-        }
-
-        .dot {
-            width: 7px;
-            height: 7px;
-
-            border: 0;
-
-            border-radius: 50%;
-
-            background: rgba(255,255,255,.25);
-
-            cursor: pointer;
-
-            transition: .3s;
-        }
-
-        .dot.active {
-            background: white;
-
-            transform: scale(1.4);
-        }
-
-
-        /* =========================
-           PHOTO GALLERY
-        ========================= */
-
-        .gallery {
-            display: grid;
-
-            grid-template-columns: repeat(12, 1fr);
-
-            grid-auto-rows: 100px;
-
-            gap: 15px;
-        }
-
-        .photo-card {
-            position: relative;
-
-            overflow: hidden;
-
-            background: #111;
-
-            cursor: pointer;
-        }
-
-        .photo-card img {
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-
-            display: block;
-
-            transition: transform 1s cubic-bezier(.2,.8,.2,1);
-        }
-
-        .photo-card:hover img {
-            transform: scale(1.08);
-        }
-
-        .photo-card:nth-child(1) {
-            grid-column: span 7;
-            grid-row: span 6;
-        }
-
-        .photo-card:nth-child(2) {
-            grid-column: span 5;
-            grid-row: span 4;
-        }
-
-        .photo-card:nth-child(3) {
-            grid-column: span 5;
-            grid-row: span 5;
-        }
-
-        .photo-card:nth-child(4) {
-            grid-column: span 7;
-            grid-row: span 5;
-        }
-
-        .photo-card:nth-child(5) {
-            grid-column: span 4;
-            grid-row: span 5;
-        }
-
-        .photo-card:nth-child(6) {
-            grid-column: span 4;
-            grid-row: span 4;
-        }
-
-        .photo-card:nth-child(7) {
-            grid-column: span 4;
-            grid-row: span 5;
-        }
-
-        .photo-card:nth-child(8) {
-            grid-column: span 4;
-            grid-row: span 4;
-        }
-
-        .photo-overlay {
-            position: absolute;
-
-            inset: 0;
-
-            padding: 20px;
-
-            display: flex;
-
-            flex-direction: column;
-
-            justify-content: space-between;
-
-            background: linear-gradient(
-                to bottom,
-                rgba(0,0,0,.35),
-                transparent 40%,
-                rgba(0,0,0,.8)
-            );
-        }
-
-        .photo-number {
-            font-size: 12px;
-
-            letter-spacing: 2px;
-        }
-
-        .photo-overlay h3 {
-            font-size: 14px;
-
-            letter-spacing: 2px;
-        }
-
-
-        /* =========================
-           ABOUT
-        ========================= */
-
-        .about {
-            background: #0d0d0d;
-        }
-
-        .about-content {
-            max-width: 1000px;
-        }
-
-        .about-content h2 {
-            font-size: clamp(35px, 6vw, 75px);
-
-            line-height: 1;
-
-            letter-spacing: -3px;
-        }
-
-        .about-content p {
-            margin-top: 35px;
-
-            max-width: 750px;
-
-            line-height: 1.9;
-
-            color: rgba(255,255,255,.5);
-        }
-
-
-        /* =========================
-           CONTACT
-        ========================= */
-
-        .contact {
-            min-height: 70vh;
-
-            display: flex;
-
-            flex-direction: column;
-
-            justify-content: center;
-        }
-
-        .contact h2 {
-            font-size: clamp(50px, 10vw, 150px);
-
-            letter-spacing: -7px;
-
-            line-height: .85;
-        }
-
-        .contact-links {
-            display: flex;
-
-            gap: 15px;
-
-            margin-top: 50px;
-
-            flex-wrap: wrap;
-        }
-
-        .contact-links a {
-            color: white;
-
-            text-decoration: none;
-
-            border-bottom: 1px solid rgba(255,255,255,.3);
-
-            padding-bottom: 7px;
-
-            transition: .3s;
-        }
-
-        .contact-links a:hover {
-            border-color: white;
-        }
-
-
-        /* =========================
-           FOOTER
-        ========================= */
-
-        footer {
-            padding: 30px 5%;
-
-            border-top: 1px solid rgba(255,255,255,.1);
-
-            display: flex;
-
-            justify-content: space-between;
-
-            color: rgba(255,255,255,.4);
-
-            font-size: 12px;
-        }
-
-
-        /* =========================
-           MOBILE
-        ========================= */
-
-        @media(max-width: 768px) {
-
-            nav {
-                height: 70px;
-
-                padding: 0 20px;
-            }
-
-            .logo-box {
-                width: 50px;
-                height: 50px;
-            }
-
-            .nav-links {
-                gap: 5px;
-            }
-
-            .nav-links a {
-                padding: 8px 10px;
-
-                font-size: 10px;
-            }
-
-            .nav-links a:nth-child(n+4) {
-                display: none;
-            }
-
-            .hero-content {
-                width: 90%;
-            }
-
-            .hero h1 {
-                letter-spacing: -3px;
-            }
-
-            section {
-                padding: 90px 20px;
-            }
-
-            .video-stage {
-                height: 450px;
-            }
-
-            .video-card {
-                width: 85%;
-                height: 65%;
-            }
-
-            .video-card.prev {
-                transform: translateX(-55%) scale(.55);
-            }
-
-            .video-card.next {
-                transform: translateX(55%) scale(.55);
-            }
-
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-
-                grid-auto-rows: 180px;
-            }
-
-            .photo-card,
-            .photo-card:nth-child(n) {
-                grid-column: span 1;
-                grid-row: span 2;
-            }
-
-            .photo-card:nth-child(1),
-            .photo-card:nth-child(4) {
-                grid-column: span 2;
-                grid-row: span 3;
-            }
-
-            footer {
-                flex-direction: column;
-
-                gap: 10px;
-            }
-        }
-
-    </style>
-</head>
-
-
-<body>
-
-
-<!-- =====================================================
-     NAVIGATION
-===================================================== -->
-
-<nav>
-
-    <a href="#home" class="logo-box">
-        <img src="logo.png" alt="Logo">
-    </a>
-
-    <div class="nav-links">
-
-        <a href="#home">HOME</a>
-
-        <a href="#videos">VIDEOS</a>
-
-        <a href="#photos">PHOTOS</a>
-
-        <a href="#about">ABOUT</a>
-
-        <a href="#contact">CONTACT</a>
-
-    </div>
-
-</nav>
-
-
-<!-- =====================================================
-     HERO
-===================================================== -->
-
-<section class="hero" id="home">
-
-    <video
-        class="hero-video"
-        autoplay
-        muted
-        loop
-        playsinline>
-
-        <source src="hero.mp4" type="video/mp4">
-
-    </video>
-
-
-    <div class="hero-content">
-
-        <div class="hero-small">
-            CREATIVE STUDIO
-        </div>
-
-        <h1>
-            ECHO<br>
-            TO marketing.
-        </h1>
-
-        <h2>
-            WE TURN IDEAS INTO VISUALS.
-        </h2>
-
-        <p>
-            We craft high-end visual stories for brands that refuse to blend in. 
-            From cinematic commercials to luxury fashion shoots, 
-            grand event coverage, and precision video editing
-             every frame we produce is a statement of excellence.
-        </p>
-
-
-        <div class="hero-buttons">
-
-            <a href="#videos" class="btn primary">
-                VIEW OUR WORK
-            </a>
-
-            <a href="#contact" class="btn">
-                LET'S TALK
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     VIDEOS
-===================================================== -->
-
-<section class="video-section" id="videos">
-
-    <div class="section-title">
-
-        <h2>
-            VIDEOS
-        </h2>
-
-        <span>
-            SELECTED WORK
-        </span>
-
-    </div>
-
-
-    <div class="video-stage" id="videoStage">
-    </div>
-
-
-    <div class="video-controls">
-
-        <button class="arrow left">
-            ←
-        </button>
-
-        <div class="counter" id="counter">
-            01 / 06
-        </div>
-
-        <button class="arrow right">
-            →
-        </button>
-
-    </div>
-
-
-    <div class="dots" id="dots">
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     PHOTOS
-===================================================== -->
-
-<section id="photos">
-
-    <div class="section-title">
-
-        <h2>
-            PHOTOS
-        </h2>
-
-        <span>
-            VISUAL STORIES
-        </span>
-
-    </div>
-
-
-    <div class="gallery" id="gallery">
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     ABOUT
-===================================================== -->
-
-<section class="about" id="about">
-
-    <div class="about-content">
-
-        <h2>
-            ECHO TO marketing
-
-
-        </h2>
-
-        <p>
-            We invest in the finest cinema cameras, lighting rigs, and audio 
-           equipment — including RED, ARRI, and Sony cinema systems — 
-            so your production is never limited by technology.
-            RED Komodo & ARRI Alexa cinema cameras
-            Professional gimbals, drones & cranes
-            Studio-grade lighting & grip equipment
-
-
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     CONTACT
-===================================================== -->
-
-<section class="contact" id="contact">
-
-    <div class="hero-small">
-        HAVE A PROJECT?
-    </div>
-
-    <h2>
-        LET'S TALK.
-    </h2>
-
-
-    <div class="contact-links">
-
-        <!-- غير رقم الواتساب هنا -->
-
-        <a
-            href="https://wa.me/201227185914"
-            target="_blank">
-
-            WHATSAPP
-
-        </a>
-        <a
-            href="https://www.instagram.com/echo.agency.3?igsi=MXA1anh6bjl4aW40dw%3D%3D&utm_source=qr"
-            target="_blank">
-
-            instagram
-
-        </a>
-
-
-        <!-- غير الإيميل هنا -->
-
-        <a href="https://www.tiktok.com/@echo.agency.3?_r=1&_t=ZS-99PEG3qMuzo">
-
-            tiktok
-
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-
-    <span>
-        © 2026 YOUR COMPANY
-    </span>
-
-    <span>
-        VIDEO · PHOTO · CREATIVE
-    </span>
-
-</footer>
-
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>EGYPT LIFE – حياة الشوارع المصرية</title>
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#111;font-family:Arial,sans-serif;touch-action:none;user-select:none;-webkit-user-select:none;color:#fff}
+canvas{position:fixed;inset:0;width:100%;height:100%;display:block}
+.hud{position:fixed;top:calc(8px + env(safe-area-inset-top,0px));right:10px;left:10px;display:flex;justify-content:space-between;gap:8px;pointer-events:none;font-size:14px}
+.box{background:rgba(0,0,0,.55);padding:6px 10px;border-radius:10px}
+#mis{max-width:62%}
+#toast{position:fixed;top:30%;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.7);padding:10px 18px;border-radius:12px;opacity:0;transition:opacity .4s;pointer-events:none;text-align:center}
+#joy{position:fixed;left:24px;bottom:calc(28px + env(safe-area-inset-bottom,0px));width:110px;height:110px;border-radius:50%;background:rgba(255,255,255,.15);border:2px solid rgba(255,255,255,.4);display:none}
+#kn{position:absolute;left:35px;top:35px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.6)}
+.bt{position:fixed;right:20px;width:64px;height:64px;border-radius:50%;border:2px solid #fff6;background:rgba(0,0,0,.5);color:#fff;font-size:14px;display:none}
+#run{bottom:calc(40px + env(safe-area-inset-bottom,0px))}
+#gear{position:fixed;top:calc(52px + env(safe-area-inset-top,0px));right:10px;padding:6px 10px;background:rgba(0,0,0,.55);border:0;color:#fff;border-radius:10px;font-size:14px}
+#set,#start{position:fixed;background:rgba(10,10,10,.92);padding:18px;border-radius:14px;display:none;line-height:2}
+#set{top:50%;left:50%;transform:translate(-50%,-50%);min-width:240px}
+#start{inset:0;border-radius:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(#1b2b4a,#c8873a)}
+#start h1{margin:0;font-size:34px;letter-spacing:2px}
+select,button.go{font-size:16px;padding:6px 10px;border-radius:8px;margin:2px}
+button.go{padding:12px 34px;font-size:20px;background:#e0a93b;border:0;color:#111;font-weight:bold}
+</style></head><body>
+<canvas id="c"></canvas>
+<div class="hud"><div class="box" id="mis"></div><div class="box"><div id="mon"></div><div id="clk"></div><div id="loc" style="font-size:12px"></div></div></div>
+<button id="gear">⚙ الإعدادات</button><button id="mu" style="position:fixed;top:calc(92px + env(safe-area-inset-top,0px));right:10px;padding:6px 10px;background:rgba(0,0,0,.55);border:0;color:#fff;border-radius:10px;font-size:14px">🎵</button>
+<button id="mapb" style="position:fixed;top:calc(132px + env(safe-area-inset-top,0px));right:10px;padding:6px 10px;background:rgba(0,0,0,.55);border:0;color:#fff;border-radius:10px;font-size:14px">🗺 خريطة</button>
+<div id="toast"></div>
+<div id="joy"><div id="kn"></div></div>
+<button class="bt" id="run">جري</button><button class="bt" id="hk" style="bottom:calc(120px + env(safe-area-inset-bottom,0px))">🕸</button><button class="bt" id="ac" style="bottom:calc(200px + env(safe-area-inset-bottom,0px))">E</button><button class="bt" id="jp" style="right:96px;bottom:calc(40px + env(safe-area-inset-bottom,0px))">قفز</button>
+<div id="set">
+<div>الجرافيك: <select id="q"><option value="0">منخفض</option><option value="1">متوسط</option><option value="2">عالي</option></select></div>
+<div>الطقس: <select id="w"><option value="0">تلقائي</option><option value="1">صافي</option><option value="2">مطر</option></select></div>
+<div>الوقت: <select id="tm"><option value="0">تلقائي</option><option value="1">نهار</option><option value="2">غروب</option><option value="3">ليل</option></select></div><div><button class="go" style="font-size:14px;padding:6px 12px" id="rst">مسح التقدم</button> <button class="go" style="font-size:14px;padding:6px 12px" id="cl">إغلاق</button></div></div>
+<div id="mp" style="display:none;position:fixed;inset:5% 4%;background:rgba(10,12,16,.95);border-radius:14px;padding:10px;overflow:auto;text-align:center;z-index:5"><canvas id="mc" width="300" height="300" style="width:min(92vw,380px);height:auto;border-radius:10px;touch-action:none"></canvas><div style="font-size:12px;opacity:.8;margin:4px">اضغط على الخريطة للانتقال لأي مكان، أو اختر معلمًا:</div><div id="ml"></div><button class="go" style="font-size:14px;padding:6px 14px" id="mx">إغلاق</button></div>
+<div id="start"><h1>EGYPT LIFE</h1><p>حياة الشوارع المصرية — المرحلة 1</p>
+<p style="font-size:14px;opacity:.9">كمبيوتر: WASD للحركة، Shift للجري، اسحب بالماوس لتدوير الكاميرا<br>موبايل: عصا التحكم يسار، اسحب على الشاشة للكاميرا، زر «جري»</p>
+<button class="go" id="go">ابدأ اللعب</button></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
-
-
-/* ======================================================
-   VIDEOS
-====================================================== */
-
-const videos = [
-
-    {
-        file: "video-01.mp4",
-        title: "PROJECT 01"
-    },
-
-    {
-        file: "video-02.mp4",
-        title: "PROJECT 02"
-    },
-
-    {
-        file: "video-03.mp4",
-        title: "PROJECT 03"
-    },
-
-    {
-        file: "video-04.mp4",
-        title: "PROJECT 04"
-    },
-
-    {
-        file: "video-05.mp4",
-        title: "PROJECT 05"
-    },
-
-    {
-        file: "video-06.mp4",
-        title: "PROJECT 06"
-    }
-
-];
-
-
-/* ======================================================
-   PHOTOS
-====================================================== */
-
-const photos = [
-
-    {
-        file: "photo-01.jpg",
-        number: "01",
-        title: "VISUAL STORY"
-    },
-
-    {
-        file: "photo-02.jpg",
-        number: "02",
-        title: "CAMPAIGN"
-    },
-
-    {
-        file: "photo-03.jpg",
-        number: "03",
-        title: "PORTRAIT"
-    },
-
-    {
-        file: "photo-04.jpg",
-        number: "04",
-        title: "EDITORIAL"
-    },
-
-    {
-        file: "photo-05.jpg",
-        number: "05",
-        title: "FASHION"
-    },
-
-    {
-        file: "photo-06.jpg",
-        number: "06",
-        title: "PRODUCT"
-    },
-
-    {
-        file: "photo-07.jpg",
-        number: "07",
-        title: "CAMPAIGN II"
-    },
-
-    {
-        file: "photo-08.jpg",
-        number: "08",
-        title: "DETAILS"
-    }
-
-];
-
-
-/* ======================================================
-   VIDEO CAROUSEL
-====================================================== */
-
-const videoStage =
-    document.getElementById("videoStage");
-
-const dotsContainer =
-    document.getElementById("dots");
-
-const counter =
-    document.getElementById("counter");
-
-let currentVideo = 0;
-
-
-/* ======================================================
-   CREATE VIDEO CARDS
-====================================================== */
-
-videos.forEach((video, index) => {
-
-    const card =
-        document.createElement("div");
-
-    card.className = "video-card";
-
-
-    card.innerHTML = `
-
-        <video
-            src="${video.file}"
-            muted
-            loop
-            playsinline
-            preload="metadata">
-        </video>
-
-        <div class="video-overlay">
-
-            <span>
-                ${video.title}
-            </span>
-
-        </div>
-
-    `;
-
-
-    card.addEventListener("click", () => {
-
-        currentVideo = index;
-
-        updateCarousel();
-
-        resetAutoPlay();
-
-    });
-
-
-    videoStage.appendChild(card);
-
-});
-
-
-/* ======================================================
-   CREATE DOTS
-====================================================== */
-
-videos.forEach((_, index) => {
-
-    const dot =
-        document.createElement("button");
-
-    dot.className = "dot";
-
-
-    dot.addEventListener("click", () => {
-
-        currentVideo = index;
-
-        updateCarousel();
-
-        resetAutoPlay();
-
-    });
-
-
-    dotsContainer.appendChild(dot);
-
-});
-
-
-/* ======================================================
-   UPDATE CAROUSEL
-====================================================== */
-
-function updateCarousel() {
-
-    const cards =
-        [...document.querySelectorAll(".video-card")];
-
-
-    cards.forEach((card, index) => {
-
-        card.className = "video-card";
-
-
-        let difference =
-            index - currentVideo;
-
-
-        if (
-            difference >
-            videos.length / 2
-        ) {
-
-            difference -= videos.length;
-
-        }
-
-
-        if (
-            difference <
-            -videos.length / 2
-        ) {
-
-            difference += videos.length;
-
-        }
-
-
-        if (difference === 0) {
-
-            card.classList.add("active");
-
-        }
-
-        else if (difference === -1) {
-
-            card.classList.add("prev");
-
-        }
-
-        else if (difference === 1) {
-
-            card.classList.add("next");
-
-        }
-
-        else {
-
-            card.classList.add("hidden");
-
-        }
-
-
-        const video =
-            card.querySelector("video");
-
-
-        if (difference === 0) {
-
-            video.play().catch(() => {});
-
-        }
-
-        else {
-
-            video.pause();
-
-        }
-
-    });
-
-
-    counter.textContent =
-        `${String(currentVideo + 1).padStart(2, "0")} / ${String(videos.length).padStart(2, "0")}`;
-
-
-    const dots =
-        [...document.querySelectorAll(".dot")];
-
-
-    dots.forEach((dot, index) => {
-
-        dot.classList.toggle(
-            "active",
-            index === currentVideo
-        );
-
-    });
-
+const eb=document.createElement('div');eb.style.cssText='position:fixed;bottom:0;left:0;right:0;z-index:9;background:#900;color:#fff;font:11px monospace;padding:4px;display:none;direction:ltr;max-height:30%;overflow:auto';document.body.appendChild(eb);const showE=t=>{eb.style.display='block';eb.textContent=t};addEventListener('error',e=>showE('ERR: '+e.message+' @'+e.lineno));const ce=console.error;console.error=(...a)=>{ce(...a);showE(String(a[0]).slice(0,400))};
+const $=id=>document.getElementById(id),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+let S={money:0,mi:0,st:0,time:9,x:-24,z:-7.5,q:1,w:0};
+try{Object.assign(S,JSON.parse(localStorage.getItem('egl1')||'{}'))}catch(e){}
+if(!isFinite(S.x)||!isFinite(S.z)){S.x=-24;S.z=-7.5}
+const save=()=>{try{localStorage.setItem('egl1',JSON.stringify(S))}catch(e){}};
+const R=new THREE.WebGLRenderer({canvas:$('c'),antialias:true});
+const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(60,1,.1,500);
+const hemi=new THREE.HemisphereLight(0xcfe8ff,0x8a7a60,.8),sun=new THREE.DirectionalLight(0xfff0d0,1);
+sun.shadow.camera.left=sun.shadow.camera.bottom=-45;sun.shadow.camera.right=sun.shadow.camera.top=45;sun.shadow.camera.far=200;sun.shadow.bias=-.0005;
+scene.add(hemi,sun,sun.target);R.shadowMap.enabled=true;
+const mats={};const mat=c=>mats[c]||(mats[c]=new THREE.MeshLambertMaterial({color:c}));
+function box(w,h,d,c,x=0,y=0,z=0,sh=true){const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat(c));m.position.set(x,y,z);m.castShadow=sh;return m}
+function tex(draw,w,h){const c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'));const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;return t}
+/* ---- العالم ---- */
+const STEP=48,boxes=[],shops=[],blocks=[],bm=[];
+const far=new THREE.Mesh(new THREE.PlaneGeometry(6000,6000),new THREE.MeshLambertMaterial({color:0xd8c18a}));far.rotation.x=-Math.PI/2;far.position.y=-.05;far.receiveShadow=true;scene.add(far);
+const asT=tex(g=>{g.fillStyle='#3a3d40';g.fillRect(0,0,128,128);for(let i=0;i<700;i++){g.fillStyle=Math.random()<.5?'#2c2f31':'#4c5053';g.fillRect(Math.random()*128,Math.random()*128,2,2)}g.strokeStyle='#222';g.beginPath();g.moveTo(10,20);g.lineTo(50,60);g.lineTo(90,70);g.stroke()},128,128);asT.repeat.set(900,900);const asph=new THREE.Mesh(new THREE.PlaneGeometry(2800,2800),new THREE.MeshLambertMaterial({map:asT}));asph.rotation.x=-Math.PI/2;asph.receiveShadow=true;scene.add(asph);
+for(let k=-2;k<=2;k++){for(const v of[0,1]){const l=new THREE.Mesh(new THREE.PlaneGeometry(.3,215),new THREE.MeshBasicMaterial({color:0xd9b92f}));l.rotation.x=-Math.PI/2;l.position.y=.02;if(v){l.rotation.z=Math.PI/2;l.position.z=k*STEP}else l.position.x=k*STEP;scene.add(l)}}
+const wallT=tex(g=>{g.fillStyle='#fff';g.fillRect(0,0,64,64);g.fillStyle='#2e3b4a';g.fillRect(14,12,36,34);g.fillStyle='#8a7a66';g.fillRect(10,48,44,5)},64,64);
+const emT=tex(g=>{g.fillStyle='#000';g.fillRect(0,0,64,64);g.fillStyle='#ffc766';g.fillRect(14,12,36,34)},64,64);
+function bmat(r,c,ry=r){const m=new THREE.MeshLambertMaterial({color:c,map:wallT.clone(),emissive:0xffffff,emissiveMap:emT.clone()});m.map.repeat.set(r,ry);m.emissiveMap.repeat.set(r,ry);m.map.needsUpdate=m.emissiveMap.needsUpdate=true;bm.push(m);return m}
+function sign(t,c){const cv=document.createElement('canvas');cv.width=256;cv.height=64;const g=cv.getContext('2d');g.fillStyle=c;g.fillRect(0,0,256,64);g.strokeStyle='#fff';g.lineWidth=4;g.strokeRect(3,3,250,58);g.fillStyle='#fff';g.font='bold 30px Arial,sans-serif';g.textAlign='center';g.textBaseline='middle';g.direction='rtl';g.fillText(t,128,34);return new THREE.CanvasTexture(cv)}
+const N=['بقالة الأمل','سوبر ماركت Amrak','عطارة الأصيل','صيدلية الشفاء','قهوة Amrak','مخبز البلد','عصير قصب النيل','كشري Amrak'];
+const SC=['#b5302a','#2a6f4a','#1f5f9a','#8a4b9a','#c2751a','#2f2f2f','#a8742a','#17806d'];
+const ST=N.map((n,i)=>new THREE.MeshBasicMaterial({map:sign(n,SC[i])}));
+const WC=['#e8d5b0','#d9b98a','#cfa27a','#e6c9a8','#c9b79c','#b98f6a'],roofM=mat(0x8a8378);
+const palmG=new THREE.CylinderGeometry(.18,.28,5,6),leafG=new THREE.SphereGeometry(2,7,4);
+for(let i=0;i<4;i++)for(let j=0;j<4;j++){
+ const cx=(i-1.5)*STEP,cz=(j-1.5)*STEP;blocks.push({cx,cz});
+ const sl=box(36,.3,36,0xb9b1a2,cx,.15,cz,false);sl.receiveShadow=true;scene.add(sl);
+ for(const a of[-1,1])for(const b of[-1,1]){
+  const h=9+Math.random()*22,x=cx+a*8,z=cz+b*8,s=bmat(3.3,WC[Math.random()*6|0]);
+  const m=new THREE.Mesh(new THREE.BoxGeometry(13,h,13),[s,s,roofM,roofM,s,s]);m.position.set(x,h/2+.3,z);m.castShadow=m.receiveShadow=true;scene.add(m);
+  boxes.push({x,z,hw:6.9,h:h+.3});
+  const idx=shops.length;shops.push({name:N[idx%8],p:new THREE.Vector3(x,0,z+b*8.5)});
+  const sg=new THREE.Mesh(new THREE.PlaneGeometry(8,2),ST[idx%8]);sg.position.set(x,3.7,z+b*6.55);if(b<0)sg.rotation.y=Math.PI;scene.add(sg);
+  scene.add(box(9,.25,1.6,SC[(idx+3)%8],x,2.7,z+b*7.2,false));
+  {const t=idx%8,zf=z+b*7.5,rs=new THREE.Mesh(new THREE.PlaneGeometry(11,2.8),ST[t]);rs.position.set(x,h+1.6,z+b*6.2);if(b<0)rs.rotation.y=Math.PI;scene.add(rs,box(.3,3,.3,0x444444,x-4,h+.8,z+b*6.2,false),box(.3,3,.3,0x444444,x+4,h+.8,z+b*6.2,false));
+   if(t==0)for(let i=0;i<3;i++)scene.add(box(.8,.6,.8,[0xdd3333,0x33aa33,0xee9900][i],x-2+i*2,.6,zf));
+   if(t==1)scene.add(box(12,1,.3,0x1f5f9a,x,5.1,z+b*6.6,false));
+   if(t==2)for(let i=0;i<6;i++){const j=new THREE.Mesh(new THREE.SphereGeometry(.28,8,6),mat([0xc9822b,0x8a3b2a,0x6b8e3a,0xd9b84a][i%4]));j.position.set(x-3+i*1.2,1.2,zf);scene.add(j)}
+   if(t==3)scene.add(box(2.4,.7,.25,0x1db954,x,h-1,z+b*6.7,false),box(.7,2.4,.25,0x1db954,x,h-1,z+b*6.7,false));
+   if(t==4)for(let i=0;i<2;i++)scene.add(box(.9,.1,.9,0x8b5a2b,x-2+i*4,.9,zf),box(.2,.9,.2,0x333333,x-2+i*4,.45,zf));
+   if(t==5)scene.add(box(1.4,3.5,1.4,0x7a4a3a,x+4,h+1.8,z));
+   if(t==6)for(let i=0;i<5;i++)scene.add(box(.15,2.2,.15,0x6aa84f,x-2+i*.3,1.1,zf));
+   if(t==7){const bw=new THREE.Mesh(new THREE.SphereGeometry(1.6,12,8,0,6.29,0,1.57),mat(0xc0392b));bw.position.set(x+4,h+.3,z);scene.add(bw)}}
+ }
+ for(const [a,b] of[[1,1],[-1,-1]]){const t=new THREE.Group();const tr=new THREE.Mesh(palmG,mat(0x7a5a38));tr.position.y=2.5;const lf=new THREE.Mesh(leafG,mat(0x3f7d2c));lf.scale.y=.35;lf.position.y=5.2;t.add(tr,lf);t.position.set(cx+a*16.5,.3,cz+b*16.5);scene.add(t)}
 }
-
-
-/* ======================================================
-   NEXT
-====================================================== */
-
-function nextVideo() {
-
-    currentVideo =
-        (currentVideo + 1) %
-        videos.length;
-
-    updateCarousel();
-
+function perim(b,t,r=16.5){const s=2*r,u=((t%(4*s))+4*s)%(4*s),sd=u/s|0,f=u%s;
+ return sd==0?[b.cx-r+f,b.cz-r,1,0]:sd==1?[b.cx+r,b.cz-r+f,0,1]:sd==2?[b.cx+r-f,b.cz+r,-1,0]:[b.cx-r,b.cz+r-f,0,-1]}
+/* ---- مدينة نصر: ~10 آلاف مبنى (Instancing) ---- */
+const hs=(a,b,c)=>{let h=Math.imul(a*73856093^b*19349663^c*83492791,2246822519);h^=h>>>13;h=Math.imul(h,3266489917);h^=h>>>16;return(h>>>0)/4294967296};
+const HB=[10,16,24,34],inCore=(n,m)=>n>=-2&&n<=1&&m>=-2&&m<=1;
+function lotAt(n,m,k){if(inCore(n,m)||n<-26||n>25||m<-26||m>25)return null;if(hs(n,m,k)<.07)return null;return{h:HB[hs(n,m,k+9)*4|0],hosp:k==0&&hs(n,m,77)<.03}}
+function near(x,z){const o=[...boxes],n0=Math.floor(x/48),m0=Math.floor(z/48);for(let n=n0-1;n<=n0+1;n++)for(let m=m0-1;m<=m0+1;m++)for(let k=0;k<4;k++){const L=lotAt(n,m,k);if(L)o.push({x:(n+.5)*48+(k&1?8:-8),z:(m+.5)*48+(k&2?8:-8),hw:6.9,h:L.h+.3})}return o}
+function gh(x,z,y){let g=.3;for(const b of near(x,z))if(Math.abs(x-b.x)<6.5&&Math.abs(z-b.z)<6.5&&y>=b.h-.6)g=Math.max(g,b.h);return g}
+function solid(nx,nz,r,y){for(const b of near(nx,nz)){if(y>=b.h-.6)continue;const px=clamp(nx,b.x-b.hw,b.x+b.hw),pz=clamp(nz,b.z-b.hw,b.z+b.hw),dx=nx-px,dz=nz-pz,dd=Math.hypot(dx,dz);if(dd<r){if(dd>1e-4){nx=px+dx/dd*r;nz=pz+dz/dd*r}else nx+=r+1}}return[nx,nz]}
+const WCc=WC.map(c=>new THREE.Color(c)),ims=HB.map(h=>{const m=new THREE.InstancedMesh(new THREE.BoxGeometry(13,h,13),new THREE.MeshLambertMaterial({color:0xffffff,map:(()=>{const t=wallT.clone();t.repeat.set(3.3,h/3.9);t.needsUpdate=true;return t})()}),4000);m.frustumCulled=false;m.count=0;scene.add(m);return m});
+const slabs=new THREE.InstancedMesh(new THREE.BoxGeometry(36,.3,36),mat(0xb9b1a2),2800);slabs.frustumCulled=false;scene.add(slabs);let ns=0,total=0;const dm=new THREE.Matrix4(),HS=new THREE.MeshBasicMaterial({map:sign('مستشفى',  '#c0262d')});
+const BP=[],BN=[],BU=[],BC=[],BI=[],FC=[[[1,0,0],[[1,-1,1],[1,-1,-1],[1,1,-1],[1,1,1]]],[[-1,0,0],[[-1,-1,-1],[-1,-1,1],[-1,1,1],[-1,1,-1]]],[[0,1,0],[[-1,1,1],[1,1,1],[1,1,-1],[-1,1,-1]]],[[0,0,1],[[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]]],[[0,0,-1],[[1,-1,-1],[-1,-1,-1],[-1,1,-1],[1,1,-1]]]],UVS=[[0,0],[1,0],[1,1],[0,1]];
+function addBox(x,z,h,hosp,ci){const col=hosp?new THREE.Color(0xffffff):WCc[ci];for(const[nm,vs]of FC){const b=BP.length/3,roof=nm[1]==1;for(let i=0;i<4;i++){const v=vs[i];BP.push(x+v[0]*6.5,.3+h/2+v[1]*h/2,z+v[2]*6.5);BN.push(...nm);BU.push(roof?UVS[i][0]:UVS[i][0]*3.3,roof?UVS[i][1]:UVS[i][1]*h/3.9);const k=roof?.65:1;BC.push(col.r*k,col.g*k,col.b*k)}BI.push(b,b+1,b+2,b,b+2,b+3)}}
+const SHN=['بقالة','سوبر ماركت','عطارة','صيدلية','قهوة','مخبز','عصير قصب','كشري','جزارة','خضار وفاكهة','حلواني','مكتبة','موبايلات','ملابس','مغسلة','فول وطعمية','مسجد','مدرسة','بنك','بنزينة','مطعم','كافيه','كوافير','ورشة سيارات','سنترال','ذهب ومجوهرات','عقارات','جيم','حضانة','عيادة','كشك','عربية فول','ذرة مشوي','صراف ATM','محطة ميكروباص','عصير فريش'],SHC=SHN.map((_,i)=>new THREE.Color().setHSL((i*.137)%1,.6,.42));
+const atC=document.createElement('canvas');atC.width=1280;atC.height=512;{const g=atC.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,1280,512);g.textAlign='center';g.textBaseline='middle';g.font='bold 25px Arial,sans-serif';g.direction='rtl';SHN.forEach((s,i)=>{const x=i%5*256,y=(i/5|0)*64;g.fillStyle='#'+SHC[i].getHexString();g.fillRect(x,y,256,64);g.strokeStyle='#fff';g.lineWidth=3;g.strokeRect(x+3,y+3,250,58);g.fillStyle='#fff';g.fillText(s+(i%4==0?' Amrak':''),x+128,y+33)})}
+const atT=new THREE.CanvasTexture(atC),SB={P:[],U:[],C:[],I:[]},AB={P:[],U:[],C:[],I:[]},HOSP=[],WH=new THREE.Color(0xffffff);
+function q4(B,p,u0,v0,u1,v1,c){const n=B.P.length/3;for(const v of p)B.P.push(v[0],v[1],v[2]);B.U.push(u0,v0,u1,v0,u1,v1,u0,v1);for(let i=0;i<4;i++)B.C.push(c.r,c.g,c.b);B.I.push(n,n+1,n+2,n,n+2,n+3)}
+function cell(i){const c=i%5,r=i/5|0;return[c/5,1-(r+1)/8,(c+1)/5,1-r/8]}
+const CW=cell(39);
+function vq(B,x,y,z,w,h,b,u,c){const a=b>0?-1:1;q4(B,[[x+a*w/2,y-h/2,z],[x-a*w/2,y-h/2,z],[x-a*w/2,y+h/2,z],[x+a*w/2,y+h/2,z]],u[0],u[1],u[2],u[3],c)}
+function AD2(x,z){for(const b of[1,-1])vq(AB,x,6.3,z+b*.2,4.5,2.5,b,[0,0,1,1],WH)}
+let LS=0;const NS={},AB2={P:[],U:[],C:[],I:[]};
+function hx(B,x,y,z,w,h,a,u,c){q4(B,[[x,y-h/2,z+a*w/2],[x,y-h/2,z-a*w/2],[x,y+h/2,z-a*w/2],[x,y+h/2,z+a*w/2]],u[0],u[1],u[2],u[3],c)}
+function shopAt(x,z,h,b,n,m,k){const r=hs(n,m,k+51),t=r<.1?16+(hs(n,m,k+61)*4|0):r<.45?20+(hs(n,m,k+62)*10|0):(hs(n,m,k+71)*16|0),u=cell(t),a=k&1?1:-1;vq(SB,x,3.7,z+b*6.55,8,2,b,u,WH);vq(SB,x,h+1.6,z+b*6.2,11,2.75,b,u,WH);q4(SB,[[x-4.5,2.5,z+b*8],[x+4.5,2.5,z+b*8],[x+4.5,3.2,z+b*6.55],[x-4.5,3.2,z+b*6.55]],CW[0]+.01,CW[1]+.01,CW[0]+.02,CW[1]+.02,SHC[t]);
+ hx(SB,x+a*6.55,3.7,z,8,2,a,cell(hs(n,m,k+81)*30|0),WH);
+ if(t>15){const d=Math.hypot(x,z);if(!NS[t]||d<NS[t].d)NS[t]={n:SHN[t]+(t%4==0?' Amrak':''),x,z:z+b*9.5,d}}
+ if(++LS%5==0){const ci=hs(n,m,k+91)*6|0,cc=ci%3,rr=ci/3|0,uu=[cc/3,1-(rr+1)/2,(cc+1)/3,1-rr/2],ah=h<12?2.4:4.2,ay=h<12?7.6:Math.min(h*.5+1,14);vq(AB2,x,ay,z+b*6.65,9,ah,b,uu,WH);hx(AB2,x+a*6.65,ay,z,9,ah,a,uu,WH)}}
+function mkB(B,m){const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(B.P,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(B.U,2));g.setAttribute('color',new THREE.Float32BufferAttribute(B.C,3));g.setIndex(new THREE.BufferAttribute(new Uint32Array(B.I),1));const o=new THREE.Mesh(g,m);o.frustumCulled=false;scene.add(o)}
+for(let n=-26;n<=25;n++)for(let m=-26;m<=25;m++){if(inCore(n,m))continue;const cx=(n+.5)*48,cz=(m+.5)*48;dm.makeTranslation(cx,.15,cz);slabs.setMatrixAt(ns++,dm);
+ for(let k=0;k<4;k++){const L=lotAt(n,m,k);if(!L)continue;const a=k&1?1:-1,b=k&2?1:-1,x=cx+a*8,z=cz+b*8,im=ims[HB.indexOf(L.h)];dm.makeTranslation(x,L.h/2+.3,z);im.setMatrixAt(im.count,dm);im.setColorAt(im.count,L.hosp?new THREE.Color(0xffffff):WCc[hs(n,m,k+3)*6|0]);im.count++;total++;addBox(x,z,L.h,L.hosp,hs(n,m,k+3)*6|0);if(L.hosp)HOSP.push([x,z+b*9.5]);else shopAt(x,z,L.h,b,n,m,k);
+  if(L.hosp){const sg=new THREE.Mesh(new THREE.PlaneGeometry(10,2.5),HS);sg.position.set(x,L.h-3,z+b*6.6);if(b<0)sg.rotation.y=Math.PI;scene.add(sg)}}}
+const lm=new THREE.MeshBasicMaterial({color:0x888888}),gm=new THREE.MeshBasicMaterial({color:0xffd9a0,transparent:true,opacity:0,blending:THREE.AdditiveBlending,depthWrite:false}),ledM=new THREE.MeshBasicMaterial({color:0x444444});
+const IM=(g,m,c)=>{const i=new THREE.InstancedMesh(g,m,c);i.frustumCulled=false;i.count=0;scene.add(i);return i};
+const poles=IM(new THREE.CylinderGeometry(.12,.16,8,6),mat(0x3a3f44),11000),heads=IM(new THREE.BoxGeometry(.7,.25,1.6),lm,11000),glows=IM(new THREE.CircleGeometry(7,16),gm,11000),ledX=IM(new THREE.BoxGeometry(36,.08,.25),ledM,6000),ledZ=IM(new THREE.BoxGeometry(.25,.08,36),ledM,6000);
+const kio=IM(new THREE.BoxGeometry(1.8,2.6,2.6),mat(0xffffff),6000),kio2=IM(new THREE.BoxGeometry(2.6,2.6,1.8),mat(0xffffff),6000);const cl=[new THREE.Color(0xffffff),new THREE.Color(0x40e0ff),new THREE.Color(0xff9a40)],rotX=new THREE.Matrix4().makeRotationX(-Math.PI/2);
+for(let n=-26;n<=25;n++)for(let m=-26;m<=25;m++){const cx=(n+.5)*48,cz=(m+.5)*48,c=cl[hs(n,m,5)*3|0];if(hs(n,m,43)<.85)AD2(cx+17.9,cz+(hs(n,m,44)<.5?-6:6));
+ {const t1=30+(hs(n,m,111)*6|0),t2=30+(hs(n,m,112)*6|0),zo=hs(n,m,113)<.5?-9:9,xo=hs(n,m,114)<.5?-9:9;dm.makeTranslation(cx-16.2,1.6,cz+zo);kio.setMatrixAt(kio.count,dm);kio.setColorAt(kio.count++,SHC[t1]);hx(SB,cx-17.15,2.2,cz+zo,3.2,.8,-1,cell(t1),WH);dm.makeTranslation(cx+xo,1.6,cz+16.2);kio2.setMatrixAt(kio2.count,dm);kio2.setColorAt(kio2.count++,SHC[t2]);vq(SB,cx+xo,2.2,cz+17.15,3.2,.8,1,cell(t2),WH)}
+ for(const[dx,dz]of[[17.4,0],[-17.4,0],[0,17.4],[0,-17.4]]){dm.makeTranslation(cx+dx,4.3,cz+dz);poles.setMatrixAt(poles.count++,dm);dm.makeTranslation(cx+dx,8.4,cz+dz);heads.setMatrixAt(heads.count++,dm);dm.makeTranslation(cx+dx*1.2,.06,cz+dz*1.2).multiply(rotX);glows.setMatrixAt(glows.count++,dm)}
+ for(const s of[-18.1,18.1]){dm.makeTranslation(cx,.34,cz+s);ledX.setMatrixAt(ledX.count,dm);ledX.setColorAt(ledX.count++,c);dm.makeTranslation(cx+s,.34,cz);ledZ.setMatrixAt(ledZ.count,dm);ledZ.setColorAt(ledZ.count++,c)}}
+mkB(SB,new THREE.MeshBasicMaterial({map:atT,vertexColors:true,side:THREE.DoubleSide}));
+{const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(BP,3));g.setAttribute('normal',new THREE.Float32BufferAttribute(BN,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(BU,2));g.setAttribute('color',new THREE.Float32BufferAttribute(BC,3));g.setIndex(new THREE.BufferAttribute(new Uint32Array(BI),1));const mm=new THREE.Mesh(g,new THREE.MeshLambertMaterial({map:wallT,vertexColors:true}));mm.frustumCulled=false;scene.add(mm)}
+ims.forEach(i=>{i.instanceMatrix.needsUpdate=true;if(i.instanceColor)i.instanceColor.needsUpdate=true});slabs.instanceMatrix.needsUpdate=true;
+let hook=null,jumpB=false;const vel=new THREE.Vector3();
+const rope=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(),new THREE.Vector3()]),new THREE.LineBasicMaterial({color:0xffffff}));rope.frustumCulled=false;rope.visible=false;scene.add(rope);
+function fireHook(){if(hook){hook=null;return}const dir=new THREE.Vector3();cam.getWorldDirection(dir);const pp=player.position;let best=null,bs=1e9;
+ for(const b of near(pp.x,pp.z)){if(b.h<pp.y+4)continue;const dx=b.x-pp.x,dz=b.z-pp.z,dy=b.h-pp.y,dl=Math.hypot(dx,dy,dz);if(dl>90||dl<5)continue;const c=(dx*dir.x+dy*dir.y+dz*dir.z)/dl;if(c<.5)continue;const sc=dl*(2-c);if(sc<bs){bs=sc;best=b}}
+ if(best){hook=new THREE.Vector3(best.x,best.h,best.z);toast('🕸 خيط!')}else toast('مفيش مبنى قدامك في المدى')}
+/* ---- البشر ---- */
+function human(shirt,pants,skin,robe,hair){const g=new THREE.Group();
+ const lim=(x,y,w,h,c)=>{const p=new THREE.Group();p.position.set(x,y,0);p.add(box(w,h,w,c,0,-h/2,0));g.add(p);return p};
+ g.legL=lim(-.12,.9,.2,.9,robe||pants);g.legR=lim(.12,.9,.2,.9,robe||pants);
+ g.armL=lim(-.34,1.48,.15,.7,shirt);g.armR=lim(.34,1.48,.15,.7,shirt);
+ g.add(robe?box(.54,1.45,.32,robe,0,.95,0):box(.5,.62,.28,shirt,0,1.2,0));
+ const hd=new THREE.Mesh(new THREE.SphereGeometry(.17,12,10),mat(skin));hd.position.y=1.72;hd.castShadow=true;g.add(hd);
+ const hr=new THREE.Mesh(new THREE.SphereGeometry(.18,10,8,0,6.29,0,1.6),mat(hair));hr.position.y=1.74;g.add(hr);
+ g.add(box(.04,.04,.04,0x222222,-.06,1.74,.16,false),box(.04,.04,.04,0x222222,.06,1.74,.16,false),box(.05,.08,.05,skin,0,1.69,.17,false));return g}
+function anim(g,ph,a){g.legL.rotation.x=Math.sin(ph)*a;g.legR.rotation.x=-Math.sin(ph)*a;g.armL.rotation.x=-Math.sin(ph)*a;g.armR.rotation.x=Math.sin(ph)*a}
+const SK=[0xc99a72,0xb5835a,0xd8ac84,0x9a6b48],SH=[0x2f6fa0,0xa03a3a,0xe8e0cc,0x3f8f5a,0xd9a030,0x555555],PN=[0x2b2b3a,0x3a4a6a,0x4a3a2a,0x222222],RB=[0xe9e2d0,0x8fa0b8,0x6a6a58,0xd0c4a8];
+const rnd=a=>a[Math.random()*a.length|0];
+const player=new THREE.Group();const hero=humanHD(0x2e5aa8,0x23283a,0xc08a62,0,0x1b1208);player.add(hero);
+player.mount=null; // جاهز لاحقًا لركوب مركبة: أي كائن فيه mesh و update(input,dt)
+player.position.set(S.x,.3,S.z);scene.add(player);
+const peds=[];for(let i=0;i<44;i++){const rb=Math.random()<.35?rnd(RB):0;const g=human(rnd(SH),rnd(PN),rnd(SK),rb,0x1b1208);g.scale.setScalar(.92+Math.random()*.15);scene.add(g);
+ peds.push({g,b:blocks[Math.random()*16|0],t:Math.random()*130,sp:(Math.random()<.5?-1:1)*(.9+Math.random()*.7),off:Math.random()*1.2-.6})}
+const CC=[0xc9c9c9,0x111111,0xf2f2f2,0x1f3f7a,0x6a6e73,0x7a1018],WG=new THREE.CylinderGeometry(.38,.38,.28,14),glassM=new THREE.MeshLambertMaterial({color:0x14222c,transparent:true,opacity:.55}),chrome=new THREE.MeshLambertMaterial({color:0xe6e6e6,emissive:0x333333}),lampM=new THREE.MeshBasicMaterial({color:0xfff2c0}),tailM=new THREE.MeshBasicMaterial({color:0xd01818}),tyreM=mat(0x0e0e0e),ringG=new THREE.TorusGeometry(.11,.025,6,14);
+function carModel(kind,c){const g=new THREE.Group(),bd=mat(c);
+ const P=(geo,m,x,y,z,rz=0)=>{const o=new THREE.Mesh(geo,m);o.position.set(x,y,z);o.rotation.z=rz;o.castShadow=true;g.add(o);return o};
+ P(new THREE.BoxGeometry(1.85,.62,4.6),bd,0,.68,0);P(new THREE.BoxGeometry(1.6,.5,2.1),glassM,0,1.24,-.25);P(new THREE.BoxGeometry(1.52,.07,1.7),bd,0,1.52,-.25);
+ for(const x of[-.92,.92])for(const z of[-1.5,1.5])P(WG,tyreM,x,.38,z,Math.PI/2);
+ for(const x of[-.64,.64]){P(new THREE.BoxGeometry(.42,.14,.08),lampM,x,.86,2.3);if(kind=='b')P(ringG,lampM,x,.86,2.34)}
+ if(kind=='m'){P(new THREE.BoxGeometry(1.4,.1,.08),tailM,0,.86,-2.3);P(new THREE.BoxGeometry(.95,.4,.06),chrome,0,.66,2.31);P(new THREE.TorusGeometry(.14,.025,6,16),chrome,0,.9,2.34)}
+ else{for(const x of[-.2,.2]){P(new THREE.BoxGeometry(.34,.32,.06),chrome,x,.66,2.31);P(new THREE.BoxGeometry(.27,.25,.07),tyreM,x,.66,2.31)}for(const x of[-.65,.65])P(new THREE.BoxGeometry(.5,.14,.08),tailM,x,.86,-2.3)}
+ return g}
+function camel(){const g=new THREE.Group(),b=(w,h,d,x,y,z,rx=0)=>{const o=box(w,h,d,0xb98a55,x,y,z);o.rotation.x=rx;g.add(o)};
+ b(.9,1,2.4,0,1.9,0);b(.6,.5,.7,0,2.6,-.2);b(.35,1.3,.4,0,2.7,1.3,.5);b(.4,.4,.8,0,3.4,1.75);for(const x of[-.3,.3])for(const z of[-.8,.8])b(.22,1.5,.22,x,.75,z);g.scale.setScalar(1.1);scene.add(g);return g}
+function humanHD(shirt,pants,skin,robe,hair){const g=new THREE.Group(),ms=mat(skin),mp=mat(robe||pants),msh=mat(shirt),wh=mat(0xffffff),dk=mat(0x151515),mh=mat(hair);
+ const S=(r,m,x,y,z,sx=1,sy=1,sz=1)=>{const o=new THREE.Mesh(new THREE.SphereGeometry(r,12,10),m);o.position.set(x,y,z);o.scale.set(sx,sy,sz);o.castShadow=true;return o},C=(rt,rb,h,m,x,y,z)=>{const o=new THREE.Mesh(new THREE.CylinderGeometry(rt,rb,h,10),m);o.position.set(x,y,z);o.castShadow=true;return o};
+ const leg=x=>{const p=new THREE.Group();p.position.set(x,.95,0);p.add(C(.1,.07,.9,mp,0,-.45,0),box(.15,.09,.32,0x1a1410,0,-.93,.07));g.add(p);return p};
+ const arm=x=>{const p=new THREE.Group();p.position.set(x,1.5,0);p.add(C(.06,.055,.32,msh,0,-.16,0),C(.05,.045,.3,ms,0,-.47,0),S(.05,ms,0,-.64,0));g.add(p);return p};
+ g.legL=leg(-.11);g.legR=leg(.11);g.armL=arm(-.27);g.armR=arm(.27);
+ const t=C(.2,.17,.62,robe?mp:msh,0,1.22,0);t.scale.z=.62;g.add(t,S(.1,msh,-.22,1.48,0),S(.1,msh,.22,1.48,0),C(.055,.06,.1,ms,0,1.56,0));
+ if(robe)g.add(C(.2,.3,1.1,mp,0,.62,0));
+ const hr=new THREE.Mesh(new THREE.SphereGeometry(.13,12,8,0,6.29,0,1.35),mh);hr.position.set(0,1.76,-.012);
+ g.add(S(.12,ms,0,1.72,0,.92,1.12,1),hr,S(.025,ms,-.12,1.72,0,.6,1,1),S(.025,ms,.12,1.72,0,.6,1,1),S(.02,ms,0,1.705,.12,1,1.2,1));
+ for(const x of[-.045,.045])g.add(S(.018,wh,x,1.735,.105),S(.01,dk,x,1.735,.12),box(.05,.01,.01,hair,x,1.775,.115,false));
+ g.add(box(.05,.01,.01,0x6a2a2a,0,1.665,.115,false));return g}
+{const H=130,eM=new THREE.MeshLambertMaterial({color:0x6a5848,emissive:0xc47a22,emissiveIntensity:0});bm.push(eM);
+ const W=y=>.9+7.6*Math.pow(1-y/H,2.4),cs=[[1,1],[-1,1],[-1,-1],[1,-1]],C=(c,y)=>new THREE.Vector3(cs[c][0]*W(y),y,cs[c][1]*W(y)),bars=[],bar=(a,b,r)=>bars.push([a,b,r]),NL=18,Y=i=>H*.93*i/NL;
+ for(let i=0;i<NL;i++){const y0=Y(i),y1=Y(i+1),rl=.25+.45*W(y0)/8.5;for(let c=0;c<4;c++){const d=(c+1)%4;bar(C(c,y0),C(c,y1),rl);if(i>=4){bar(C(c,y0),C(d,y0),.2);bar(C(c,y0),C(d,y1),.12);bar(C(d,y0),C(c,y1),.12)}}}
+ for(let c=0;c<4;c++){const d=(c+1)%4;let pv=C(c,0);for(let k=1;k<=14;k++){const t=k/14,y=Math.pow(Math.sin(Math.PI*t),.6)*26,p=C(c,y).lerp(C(d,y),t);bar(pv,p,.4);pv=p}}
+ bar(new THREE.Vector3(0,Y(NL),0),new THREE.Vector3(0,H*1.12,0),.3);
+ for(const[i,s]of[[5,3.2],[10,2.8],[15,2.2]]){const w=2*W(Y(i))+s;scene.add(box(w,1.2,w,0x4a3c2e,0,Y(i),0),box(w+.6,.4,w+.6,0x8a7a62,0,Y(i)+.8,0,false))}
+ scene.add(box(3,2.4,3,0x4a3c2e,0,Y(NL),0));
+ const IE=new THREE.InstancedMesh(new THREE.CylinderGeometry(1,1,1,5),eM,bars.length),up=new THREE.Vector3(0,1,0),q=new THREE.Quaternion(),M4=new THREE.Matrix4(),sc=new THREE.Vector3(),ps=new THREE.Vector3();
+ bars.forEach(([a,b,r],i)=>{const d=b.clone().sub(a),l=d.length();q.setFromUnitVectors(up,d.normalize());ps.copy(a).add(b).multiplyScalar(.5);M4.compose(ps,q,sc.set(r,l,r));IE.setMatrixAt(i,M4)});IE.castShadow=true;IE.frustumCulled=false;scene.add(IE);
+ for(const[sx,sz]of cs)boxes.push({x:sx*7.6,z:sz*7.6,hw:1.7,h:999})}
+const adC=document.createElement('canvas');adC.width=512;adC.height=288;const adG=adC.getContext('2d'),adT=new THREE.CanvasTexture(adC),adM=new THREE.MeshBasicMaterial({map:adT}),ADS=[['Amrak','Instagram: qjw_j','#0b3d91'],['عطارة الأصيل','الأصلية من زمان','#6b3a12'],['سوبر ماركت الخير','عروض كل يوم','#1b7a3a'],['مستشفى الشفاء','رعاية على مدار الساعة','#a01c2a'],['مطعم الأصايل','أشهى أكل مصري','#8a4b9a'],['بنك الأمان','خدمة 24 ساعة','#117a8b']];let adI=-1;
+function adDraw(i,g=adG,ox=0,oy=0){const a=ADS[i];g.fillStyle=a[2];g.fillRect(ox,oy,512,288);g.fillStyle='rgba(255,255,255,.12)';g.fillRect(ox,oy+200,512,88);g.fillStyle='#fff';g.textAlign='center';g.textBaseline='middle';g.font='bold 58px Arial,sans-serif';g.fillText(a[0],ox+256,oy+110);g.font='34px Arial,sans-serif';g.fillText(a[1],ox+256,oy+225);adT.needsUpdate=true}
+const aaC=document.createElement('canvas');aaC.width=1536;aaC.height=576;{const g=aaC.getContext('2d');ADS.forEach((_,i)=>adDraw(i,g,i%3*512,(i/3|0)*288))}mkB(AB2,new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(aaC),side:THREE.DoubleSide}));
+const bbG=new THREE.BoxGeometry(6,3.4,.3),bbD=mat(0x222222);for(let n=-26;n<=25;n++)for(let m=-26;m<=25;m++)if(hs(n,m,41)<.018){const x=(n+.5)*48+17.4,z=(m+.5)*48+17.4;scene.add(box(.3,7,.3,0x333333,x,3.5,z,false));const s=new THREE.Mesh(bbG,[bbD,bbD,bbD,bbD,adM,adM]);s.position.set(x,8.4,z);scene.add(s)}
+const arrow=new THREE.Mesh(new THREE.ConeGeometry(1.3,3.2,8),new THREE.MeshBasicMaterial({color:0xffd040}));arrow.rotation.x=Math.PI;arrow.visible=false;scene.add(arrow);let HT=null;
+function pickTarget(){if(hook||player.mount)return null;const dir=new THREE.Vector3();cam.getWorldDirection(dir);const pp=player.position;let best=null,bs=1e9;for(const b of near(pp.x,pp.z)){if(b.h<pp.y+4)continue;const dx=b.x-pp.x,dz=b.z-pp.z,dy=b.h-pp.y,dl=Math.hypot(dx,dy,dz);if(dl>90||dl<5)continue;const c=(dx*dir.x+dy*dir.y+dz*dir.z)/dl;if(c<.5)continue;const sc=dl*(2-c);if(sc<bs){bs=sc;best=b}}return best}
+function fireHook(){if(hook){hook=null;return}if(HT){hook=new THREE.Vector3(HT.x,HT.h,HT.z);toast('🕸 خيط!')}else toast('مفيش مبنى قدامك في المدى')}
+let au=null,mus=false,ni=3,tk=0;const SCL=[0,1,4,5,7,8,11,12];
+let eg=null,eo=null;function engine(on,sp){const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;if(on&&!eo){if(!au)au=new AC();if(au.resume)au.resume();eo=au.createOscillator();eg=au.createGain();const f=au.createBiquadFilter();f.type='lowpass';f.frequency.value=500;eo.type='sawtooth';eo.connect(f);f.connect(eg);eg.connect(au.destination);eo.start()}if(eo){eo.frequency.value=38+Math.abs(sp)*5.5;eg.gain.value=on?.03+Math.min(.04,Math.abs(sp)*.002):0}}
+function music(on){mus=on;if(on){if(!au)au=new(window.AudioContext||window.webkitAudioContext)();if(au.resume)au.resume()}}
+function beep(f,t,ty,g0,d){const o=au.createOscillator(),g=au.createGain();o.type=ty;o.frequency.value=f;g.gain.setValueAtTime(g0,t);g.gain.exponentialRampToValueAtTime(.001,t+d);o.connect(g);g.connect(au.destination);o.start(t);o.stop(t+d)}
+setInterval(()=>{if(!mus||!au)return;const t=au.currentTime;tk++;if(tk%4==0)beep(70,t,'sine',.5,.3);if(tk%4==2)beep(180,t,'square',.06,.08);if(tk%2==0||Math.random()<.4){ni=clamp(ni+(Math.random()<.5?-1:1)*(Math.random()<.3?2:1),0,15);const s=SCL[ni%8]+12*(ni/8|0);beep(220*Math.pow(2,s/12),t,'triangle',.12,.5)}if(tk%16==0)beep(110,t,'sawtooth',.05,1.6)},250);
+mkB(AB,new THREE.MeshBasicMaterial({map:adT,side:THREE.DoubleSide}));
+const ckC=document.createElement('canvas');ckC.width=ckC.height=256;const ckG=ckC.getContext('2d'),ckT=new THREE.CanvasTexture(ckC),ckM=new THREE.MeshBasicMaterial({map:ckT});let ckI=-1;
+function ckDraw(){const t=S.time,hh=(t%12)/12*Math.PI*2,mm=(t%1)*Math.PI*2,g=ckG;g.fillStyle='#f4ecd8';g.fillRect(0,0,256,256);g.strokeStyle='#5a3a1a';g.lineWidth=10;g.strokeRect(5,5,246,246);g.fillStyle='#222';g.font='bold 26px Arial';g.textAlign='center';g.textBaseline='middle';for(let i=1;i<=12;i++){const a=i/6*Math.PI;g.fillText(i,128+Math.sin(a)*98,128-Math.cos(a)*98)}g.lineCap='round';g.strokeStyle='#111';g.lineWidth=9;g.beginPath();g.moveTo(128,128);g.lineTo(128+Math.sin(hh)*60,128-Math.cos(hh)*60);g.stroke();g.lineWidth=5;g.beginPath();g.moveTo(128,128);g.lineTo(128+Math.sin(mm)*90,128-Math.cos(mm)*90);g.stroke();ckT.needsUpdate=true}
+const CT=[[96,96],[-96,-96],[192,-96],[-192,96],[0,288]],cSg=new THREE.MeshBasicMaterial({map:sign('برج الساعة','#7a2a1a')});
+for(const[x,z]of CT){scene.add(box(6,18,6,0x9a7a52,x,9,z),box(4.6,10,4.6,0x8a6a42,x,23,z),box(6.4,6.4,6.4,0xb59468,x,31,z));for(const[px,pz,r]of[[0,3.25,0],[0,-3.25,Math.PI],[3.25,0,Math.PI/2],[-3.25,0,-Math.PI/2]]){const p=new THREE.Mesh(new THREE.PlaneGeometry(5.4,5.4),ckM);p.position.set(x+px,31,z+pz);p.rotation.y=r;scene.add(p)}const rf=new THREE.Mesh(new THREE.ConeGeometry(5,7,4),mat(0x7a2a1a));rf.rotation.y=Math.PI/4;rf.position.set(x,38.5,z);scene.add(rf);const sg=new THREE.Mesh(new THREE.PlaneGeometry(6,1.5),cSg);sg.position.set(x,6,z+3.1);scene.add(sg);boxes.push({x,z,hw:3.4,h:999})}
+const LM=[{n:'برج إيفل',x:0,z:9,k:'t'},...CT.map(([x,z],i)=>({n:'برج الساعة '+(i+1),x,z:z+6,k:'t'})),...HOSP.filter((_,i)=>i%6==0).slice(0,12).map((p,i)=>({n:'مستشفى '+(i+1),x:p[0],z:p[1],k:'s'})),...Object.values(NS).map(o=>({n:o.n,x:o.x,z:o.z,k:'s'})),{n:'نقطة البداية',x:-24,z:-7.5,k:'t'}];
+let mf='';function tp(x,z){if(player.mount){player.mount.parked=true;player.mount.v=player.mount.sp=0;player.mount=null}hook=null;vel.set(0,0,0);player.position.set(x,.3,z);$('mp').style.display='none';toast('تم الانتقال ✈')}
+function mapOpen(){const c=$('mc'),g=c.getContext('2d'),W=c.width,K=W/2600,P=player.position;g.fillStyle='#17202b';g.fillRect(0,0,W,W);g.strokeStyle='#33465a';g.lineWidth=1;for(let i=-27;i<=26;i++){g.beginPath();g.moveTo(W/2+i*48*K,0);g.lineTo(W/2+i*48*K,W);g.moveTo(0,W/2+i*48*K);g.lineTo(W,W/2+i*48*K);g.stroke()}
+ for(const l of LM){g.fillStyle=l.k=='t'?'#ffd040':'#ff5a5a';g.beginPath();g.arc(W/2+l.x*K,W/2+l.z*K,4,0,7);g.fill()}g.fillStyle='#40ff90';g.beginPath();g.arc(W/2+P.x*K,W/2+P.z*K,5,0,7);g.fill();
+ const L=$('ml');L.innerHTML='';const ls=LM.filter(l=>!mf||l.k==mf);
+ for(const[f,tn]of[['','الكل'],['t','🗼 أبراج ومعالم'],['s','🏪 محلات وخدمات']]){const b=document.createElement('button');b.textContent=tn;b.style.cssText='margin:3px;padding:7px 10px;border-radius:8px;border:0;background:'+(mf==f?'#e0a93b':'#556')+';color:'+(mf==f?'#111':'#fff')+';font-size:13px';b.onclick=()=>{mf=f;mapOpen()};L.appendChild(b)}L.appendChild(document.createElement('br'));{const m=mission();ls.unshift({n:'🎯 المهمة الحالية',x:(S.st==0?m.a:m.b).p.x,z:(S.st==0?m.a:m.b).p.z+1})}
+ for(const l of ls){const b=document.createElement('button');b.textContent=l.n;b.style.cssText='margin:3px;padding:7px 10px;border-radius:8px;border:0;background:#2b3a4a;color:#fff;font-size:13px';b.onclick=()=>tp(l.x,l.z);L.appendChild(b)}$('mp').style.display='block'}
+$('mapb').onclick=mapOpen;$('mx').onclick=()=>$('mp').style.display='none';
+$('mc').onpointerdown=e=>{const r=e.target.getBoundingClientRect(),W=300,K=W/2600,px=(e.clientX-r.left)/r.width*W,pz=(e.clientY-r.top)/r.height*W;let best=null,bd=14;for(const l of LM){const d=Math.hypot(W/2+l.x*K-px,W/2+l.z*K-pz);if(d<bd){bd=d;best=l}}if(best)return tp(best.x,best.z);const n=clamp(Math.floor((px-W/2)/K/48),-26,25),m=clamp(Math.floor((pz-W/2)/K/48),-26,25);tp((n+.5)*48,(m+.5)*48+16.5)};
+/* ---- المركبات (الزحام) ---- */
+const vehicles=[];function mkVeh(moto){const g=new THREE.Group(),c=rnd([0xc9c9c9,0xa02828,0xe0c030,0x2a5ea0,0xf2f2f2,0x2f2f2f]);
+ if(moto){g.add(box(.5,.6,1.9,c,0,.7,0),box(.3,.9,.5,0x222222,0,1,-.1),box(.1,.7,.7,0x111111,0,.4,.8),box(.1,.7,.7,0x111111,0,.4,-.8))}
+ else{g.add(carModel(Math.random()<.5?'m':'b',rnd(CC)))}
+ scene.add(g);return g}
+for(let i=0;i<20;i++){const ax=Math.random()<.5?'z':'x',k=(Math.random()*5|0)-2,dir=Math.random()<.5?1:-1,moto=i%3==0;
+ vehicles.push({mesh:mkVeh(moto),ax,k,dir,p:Math.random()*220-110,v:0,max:(moto?10:6)+Math.random()*4,moto,h:0,sp:0,
+ update(i,dt){const m=this.mesh,mx=this.cap||(this.moto?26:20),sp=this.sp,th=i.iy,br=keys.Space||jumpB;jumpB=false;let a=0;
+ if(br)a=-Math.sign(sp)*Math.min(Math.abs(sp)/dt,28);
+ else if(th>.05)a=(sp<-.3?18:(11*(1-Math.max(0,sp)/mx)+1))*Math.min(1,th*1.2);
+ else if(th<-.05)a=(sp>.3?-22:(sp>-7?-7*(1+sp/14):0))*Math.min(1,-th*1.2);
+ else a=-Math.sign(sp)*Math.min(Math.abs(sp)/dt,2+.012*sp*sp);
+ this.sp=clamp(sp+a*dt,-7,mx);this.ac=(this.ac||0)+(a-(this.ac||0))*Math.min(1,dt*5);this.st=(this.st||0)+(-i.ix-(this.st||0))*Math.min(1,dt*5);
+ this.h+=this.sp*Math.tan(this.st*.6/(1+Math.abs(this.sp)/12))/2.8*dt;
+ const nx=m.position.x+Math.sin(this.h)*this.sp*dt,nz=m.position.z+Math.cos(this.h)*this.sp*dt,r=solid(nx,nz,2.2,.3);if(Math.hypot(r[0]-nx,r[1]-nz)>.05)this.sp*=.5;m.position.x=r[0];m.position.z=r[1];
+ m.rotation.order='YXZ';m.rotation.y=this.h;m.rotation.x=clamp(-this.ac*.0035,-.05,.05);m.rotation.z=clamp(this.st*this.sp*.0035,-.06,.06);this.v=this.sp}})}
+/* ---- مهمات وعملات ---- */
+const mk=new THREE.Mesh(new THREE.CylinderGeometry(1.8,1.8,14,16,1,true),new THREE.MeshBasicMaterial({color:0xffd040,transparent:true,opacity:.35,side:THREE.DoubleSide}));scene.add(mk);
+const mission=()=>{const a=shops[(S.mi*7)%64],b=shops[(S.mi*7+19)%64];return{a,b,rw:40+Math.round(Math.hypot(b.p.x-a.p.x,b.p.z-a.p.z)/5)*5}};
+const coins=[];for(let i=0;i<40;i++){const b=blocks[Math.random()*16|0],p=perim(b,Math.random()*132);const c=new THREE.Mesh(new THREE.CylinderGeometry(.3,.3,.06,12),new THREE.MeshLambertMaterial({color:0xffc928,emissive:0x6a4a00}));c.rotation.x=Math.PI/2;const w=new THREE.Group();w.add(c);w.position.set(p[0],1,p[1]);scene.add(w);coins.push(w)}
+/* ---- مطر ---- */
+const rp=new Float32Array(900),rain=new THREE.Points(new THREE.BufferGeometry(),new THREE.PointsMaterial({color:0xbcd0e8,size:.12,transparent:true,opacity:0}));
+for(let i=0;i<900;i+=3){rp[i]=Math.random()*40-20;rp[i+1]=Math.random()*20;rp[i+2]=Math.random()*40-20}
+rain.geometry.setAttribute('position',new THREE.BufferAttribute(rp,3));rain.frustumCulled=false;scene.add(rain);
+/* ---- إعدادات ---- */
+function applyQ(){const q=+S.q;R.setPixelRatio(Math.min(devicePixelRatio,[1,1.4,2][q]));sun.castShadow=q>0;sun.shadow.mapSize.set(q==2?2048:1024,q==2?2048:1024);if(sun.shadow.map){sun.shadow.map.dispose();sun.shadow.map=null}
+ scene.fog=new THREE.Fog(0x87c4e8,40,[110,180,260][q]);cam.far=[200,320,500][q];cam.updateProjectionMatrix();peds.forEach((p,i)=>p.g.visible=i<[16,30,44][q]);R.setSize(innerWidth,innerHeight)}
+$('q').value=S.q;$('w').value=S.w;$('q').onchange=e=>{S.q=+e.target.value;applyQ();save()};$('w').onchange=e=>{S.w=+e.target.value;save()};$('tm').value=S.tm|0;$('tm').onchange=e=>{S.tm=+e.target.value;save()};
+$('gear').onclick=()=>$('set').style.display='block';$('cl').onclick=()=>$('set').style.display='none';
+$('rst').onclick=()=>{try{localStorage.removeItem('egl1')}catch(e){}location.reload()};
+addEventListener('resize',()=>{R.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()});cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();applyQ();
+const touch=matchMedia('(pointer:coarse)').matches||'ontouchstart' in window;if(touch){$('joy').style.display='block';document.querySelectorAll('.bt').forEach(b=>b.style.display='block')}
+$('go').onclick=()=>{$('start').style.display='none';toast('أول مهمة: '+$('mis').textContent)};
+let tt;function toast(t){const e=$('toast');e.textContent=t;e.style.opacity=1;clearTimeout(tt);tt=setTimeout(()=>e.style.opacity=0,2800)}
+/* ---- تحكم ---- */
+const keys={};let yaw=0,pitch=.45,jx=0,jy=0,jid=null,look=null,runT=false;
+addEventListener('keydown',e=>{keys[e.code]=1;if(e.code=='KeyE')interact();if(e.code=='KeyM')mapOpen();if(e.code=='KeyF')fireHook()});addEventListener('keyup',e=>keys[e.code]=0);
+const cv=$('c');cv.addEventListener('pointerdown',e=>{look={id:e.pointerId,x:e.clientX,y:e.clientY};cv.setPointerCapture(e.pointerId)});
+cv.addEventListener('pointermove',e=>{if(look&&look.id==e.pointerId){yaw-=(e.clientX-look.x)*.006;pitch=clamp(pitch+(e.clientY-look.y)*.004,.12,1.2);look.x=e.clientX;look.y=e.clientY}});
+cv.addEventListener('pointerup',e=>{if(look&&look.id==e.pointerId)look=null});
+const jo=$('joy');function jmove(e){const r=jo.getBoundingClientRect(),dx=e.clientX-r.left-55,dy=e.clientY-r.top-55,l=Math.min(45,Math.hypot(dx,dy)),a=Math.atan2(dy,dx);jx=Math.cos(a)*l/45;jy=-Math.sin(a)*l/45;$('kn').style.transform=`translate(${Math.cos(a)*l}px,${Math.sin(a)*l}px)`}
+jo.addEventListener('pointerdown',e=>{jid=e.pointerId;jo.setPointerCapture(jid);jmove(e)});jo.addEventListener('pointermove',e=>{if(e.pointerId==jid)jmove(e)});
+const jend=e=>{if(e.pointerId==jid){jid=null;jx=jy=0;$('kn').style.transform=''}};jo.addEventListener('pointerup',jend);jo.addEventListener('pointercancel',jend);
+$('run').onclick=()=>{runT=!runT;$('run').style.background=runT?'#e0a93b88':''};
+for(const[x,z]of[[-12,-7.3],[-34,-7.3],[-40,-7.3]]){const m=camel();m.position.set(x,.3,z);m.rotation.y=Math.random()*6;vehicles.push({...vehicles[0],mesh:m,parked:true,cap:9,v:0,sp:0,h:m.rotation.y,moto:false})}
+const victim=human(0xaa3333,0x222222,0xc08a62,0,0x222222);victim.visible=false;scene.add(victim);let vT=0;
+for(const[x,z,r]of[[-24,-3.6,Math.PI/2],[-31,-3.6,Math.PI/2],[-17,-3.6,Math.PI/2]]){const g=carModel('m',0xf4f4f4);g.add(box(.55,.2,.3,0xffd040,0,1.65,-.25,false));scene.add(g);g.position.set(x,0,z);g.rotation.y=r;vehicles.push({...vehicles[0],mesh:g,parked:true,cap:22,v:0,sp:0,h:r,moto:false})}
+const pax=human(0x8a3b9a,0x222233,0xc08a62,0,0x1b1208);pax.visible=false;scene.add(pax);let paxCar=null;
+function interact(){if(player.mount){const v=player.mount;player.mount=null;v.parked=true;v.v=v.sp=0;player.position.set(v.mesh.position.x+Math.cos(v.h)*2.8,.3,v.mesh.position.z-Math.sin(v.h)*2.8);toast('نزلت من العربية');return}
+ let n=null,d=5;for(const v of vehicles){const k=v.mesh.position.distanceTo(player.position);if(k<d){d=k;n=v}}
+ if(n){player.mount=n;n.h=n.mesh.rotation.y;n.sp=n.parked?0:n.v;if(!n.parked&&!n.stolen){n.stolen=true;victim.visible=true;vT=5;victim.position.set(n.mesh.position.x+Math.cos(n.h)*2.2,.3,n.mesh.position.z-Math.sin(n.h)*2.2);victim.rotation.y=Math.atan2(Math.cos(n.h),-Math.sin(n.h));toast('نزّلت السواق وركبت العربية 🚗')}else toast('ركبت — E للنزول');n.parked=false}else toast('مفيش عربية قريبة')}
+[['hk',()=>fireHook()],['ac',()=>interact()],['jp',()=>jumpB=true]].forEach(([i,f])=>$(i).addEventListener('pointerdown',e=>{e.preventDefault();e.stopPropagation();f()}));$('mu').onclick=()=>{music(!mus);$('mu').textContent=mus?'🔊':'🎵'};
+/* ---- تحديث ---- */
+let T=0,ph=0,rv=0,ang=0;const sk=new THREE.Color(),cN=new THREE.Color(0x0a1030),cS=new THREE.Color(0xff8a50),cD=new THREE.Color(0x87c4e8);
+function update(dt){T+=dt;{const tm=S.tm|0;S.time=tm?[0,12,17.6,23.5][tm]:(S.time+dt*24/720)%24}
+ const d=Math.max(0,Math.sin((S.time-6)/12*Math.PI)),night=1-Math.min(1,d*3);
+ const rainOn=S.w==2||(S.w==0&&Math.sin(T*.02)>.7);rv+=((rainOn?1:0)-rv)*Math.min(1,dt*.5);
+ if(d<.25)sk.copy(cN).lerp(cS,d/.25);else sk.copy(cS).lerp(cD,(d-.25)/.75);sk.multiplyScalar(1-.3*rv);scene.background=sk;scene.fog.color.copy(sk);
+ hemi.intensity=.22+d*.65;sun.intensity=d*1.1*(1-.5*rv);bm.forEach(m=>m.emissiveIntensity=night*.9);lm.color.setRGB(.5+.5*night,.5+.4*night,.5+.1*night);gm.opacity=night*.45;ledM.color.setScalar(.25+.75*night);
+ /* لاعب */
+ let ix=(keys.KeyD||keys.ArrowRight?1:0)-(keys.KeyA||keys.ArrowLeft?1:0)+jx,iy=(keys.KeyW||keys.ArrowUp?1:0)-(keys.KeyS||keys.ArrowDown?1:0)+jy;
+ const il=Math.hypot(ix,iy);if(il>1){ix/=il;iy/=il}
+ if(player.mount){player.mount.update({ix,iy},dt)}else{
+  const sy=Math.sin(yaw),cy=Math.cos(yaw),mx=-sy*iy+cy*ix,mz=-cy*iy-sy*ix,mag=Math.min(1,Math.hypot(mx,mz));
+  const run=keys.ShiftLeft||keys.ShiftRight||runT,sp=(run?7:3.2)*mag;
+  if(mag>.05){let nx=player.position.x+mx*(run?7:3.2)*dt,nz=player.position.z+mz*(run?7:3.2)*dt;
+   [nx,nz]=solid(nx,nz,.45,player.position.y);
+   player.position.x=clamp(nx,-1240,1240);player.position.z=clamp(nz,-1240,1240);
+   let ta=Math.atan2(mx,mz),df=((ta-ang+Math.PI*3)%(Math.PI*2))-Math.PI;ang+=df*Math.min(1,dt*12);player.rotation.y=ang;ph+=sp*dt*2.6;anim(hero,ph,run?.9:.6)}else anim(hero,0,0)}
+ {const pp=player.position;
+ if(player.mount){pp.copy(player.mount.mesh.position);pp.y=.3;player.visible=false}else{player.visible=true;
+  if(hook){const dv=new THREE.Vector3(hook.x-pp.x,hook.y-pp.y,hook.z-pp.z),dl=dv.length();dv.normalize();if(dl<3.5){vel.set(0,0,0);pp.copy(hook);hook=null;toast('وصلت للسطح!')}else{vel.addScaledVector(dv,70*dt);vel.y-=8*dt;vel.multiplyScalar(1-.6*dt);pp.addScaledVector(vel,dt)}}
+  else{vel.y-=25*dt;pp.x+=vel.x*dt;pp.y+=vel.y*dt;pp.z+=vel.z*dt;vel.x*=1-3*dt;vel.z*=1-3*dt}
+  const g=gh(pp.x,pp.z,pp.y+.5);if((keys.Space||jumpB)&&pp.y<=g+.06&&!hook)vel.y=9;jumpB=false;if(!hook&&pp.y<=g&&vel.y<=0){pp.y=g;vel.y=0}}
+ rope.visible=!!hook;if(hook){const a=rope.geometry.attributes.position;a.setXYZ(0,pp.x,pp.y+1.4,pp.z);a.setXYZ(1,hook.x,hook.y,hook.z);a.needsUpdate=true}
+ if(vT>0){vT-=dt;const r=victim.rotation.y;victim.position.x+=Math.sin(r)*5*dt;victim.position.z+=Math.cos(r)*5*dt;anim(victim,T*14,.9);if(vT<=0)victim.visible=false}}
+HT=pickTarget();arrow.visible=!!HT;if(HT)arrow.position.set(HT.x,HT.h+4+Math.sin(T*4),HT.z);const ai=(T/3|0)%6;if(ai!=adI){adI=ai;adDraw(ai)}const ck=S.time*12|0;if(ck!=ckI){ckI=ck;ckDraw()}
+const CD=player.mount?10:6.5;if(player.mount&&!look){const t=player.mount.h+Math.PI,d=((t-yaw+Math.PI*3)%(Math.PI*2))-Math.PI;yaw+=d*Math.min(1,dt*2.2)}if(player.mount||eo)engine(!!player.mount,player.mount?player.mount.sp:0);const P=player.position;
+{const nm=['شارع عباس العقاد','شارع مكرم عبيد','شارع مصطفى النحاس','شارع الطيران','شارع يوسف عباس'][((Math.round(P.z/48)%5)+5)%5],t='📍 مدينة نصر – '+nm+(hook?' 🕸':'')+(player.mount?' 🚗 '+Math.round(Math.abs(player.mount.sp)*3.6)+' كم/س':'');if($('loc').textContent!=t)$('loc').textContent=t}
+ cam.position.set(P.x+Math.sin(yaw)*Math.cos(pitch)*CD,P.y+1.6+Math.sin(pitch)*CD,P.z+Math.cos(yaw)*Math.cos(pitch)*CD);cam.lookAt(P.x,P.y+1.5,P.z);
+ const sa=(S.time-6)/12*Math.PI;sun.position.set(P.x+Math.cos(sa)*60,Math.max(8,Math.sin(sa)*60),P.z+20);sun.target.position.copy(P);
+ rain.material.opacity=rv*.8;rain.visible=rv>.02;if(rain.visible){rain.position.set(P.x,P.y,P.z);for(let i=1;i<900;i+=3){rp[i]-=30*dt;if(rp[i]<0)rp[i]+=20}rain.geometry.attributes.position.needsUpdate=true}
+ /* مارة */
+ for(const p of peds){if(!p.g.visible)continue;if(Math.hypot(p.b.cx-P.x,p.b.cz-P.z)>170)p.b={cx:(Math.round(P.x/48-.5)+(Math.random()*5|0)-2+.5)*48,cz:(Math.round(P.z/48-.5)+(Math.random()*5|0)-2+.5)*48};p.t+=p.sp*dt;const q=perim(p.b,p.t),s=Math.sign(p.sp);p.g.position.set(q[0]+q[3]*p.off*-1,.3,q[1]+q[2]*p.off);p.g.rotation.y=Math.atan2(q[2]*s,q[3]*s);anim(p.g,p.t*2.4,.6)}
+ /* مركبات */
+ const ox=Math.round(P.x/STEP),oz=Math.round(P.z/STEP);for(const v of vehicles){if(v.parked||player.mount===v)continue;const lane=(v.k+(v.ax=='z'?ox:oz))*STEP+v.dir*3.2*(v.ax=='z'?1:-1),fx=v.ax=='z'?0:v.dir,fz=v.ax=='z'?v.dir:0;
+  const rx=P.x-v.mesh.position.x,rz=P.z-v.mesh.position.z,al=rx*fx+rz*fz,lat=Math.abs(rx*fz-rz*fx);
+  const tg=(al>0&&al<8&&lat<2.6)?0:v.max;v.v+=(tg-v.v)*Math.min(1,dt*2.5);const cc=v.ax=='z'?P.z:P.x;v.p+=v.dir*v.v*dt;if(v.p>cc+110)v.p-=220;else if(v.p<cc-110)v.p+=220;
+  v.mesh.position.set(v.ax=='z'?lane:v.p,0,v.ax=='z'?v.p:lane);v.mesh.rotation.y=Math.atan2(fx,fz)}
+ /* عملات */
+ for(const c of coins){if(!c.visible)continue;c.rotation.y+=dt*3;if(Math.abs(c.position.x-P.x)<1.2&&Math.abs(c.position.z-P.z)<1.2){c.visible=false;S.money+=10;toast('+10 جنيه')}}
+ /* مهمة */
+ const m=mission(),tg=S.st==0?m.a:m.b;mk.position.set(tg.p.x,7,tg.p.z);mk.rotation.y+=dt;
+ const dist=Math.hypot(tg.p.x-P.x,tg.p.z-P.z),mv=player.mount,slow=mv&&Math.abs(mv.sp)<5;
+ if(S.st==1&&!paxCar&&mv)paxCar=mv;
+ if(pax.walk>0){pax.walk-=dt;const r=pax.rotation.y;pax.position.x+=Math.sin(r)*2.6*dt;pax.position.z+=Math.cos(r)*2.6*dt;anim(pax,T*10,.8);if(pax.walk<=0){pax.walk=0;pax.visible=false}}
+ if(S.st==0&&!pax.walk){pax.visible=true;pax.scale.setScalar(.92);pax.position.set(m.a.p.x,.3,m.a.p.z);pax.rotation.y=Math.atan2(P.x-m.a.p.x,P.z-m.a.p.z);anim(pax,0,0)}
+ if(S.st==0&&mv&&slow&&dist<8){S.st=1;paxCar=mv;pax.walk=0;toast('الراكب ركب ✅ وصّله إلى «'+m.b.name+'»')}
+ else if(S.st==1&&mv&&mv===paxCar&&slow&&dist<8){S.money+=m.rw;S.mi++;S.st=0;toast('وصّلت الراكب 🚖 +'+m.rw+' جنيه');save();const h=mv.h;pax.scale.setScalar(.92);pax.walk=4;pax.position.set(mv.mesh.position.x-Math.cos(h)*1.8,.3,mv.mesh.position.z+Math.sin(h)*1.8);pax.rotation.y=Math.atan2(-Math.cos(h),Math.sin(h));pax.visible=true;paxCar=null}
+ if(S.st==1&&paxCar){const c=paxCar.mesh,h=paxCar.h;pax.visible=true;pax.scale.setScalar(.78);pax.position.set(c.position.x-.4*Math.cos(h)-.25*Math.sin(h),.08,c.position.z+.4*Math.sin(h)-.25*Math.cos(h));pax.rotation.y=h;anim(pax,0,0)}
+ const m2=mission(),t2=S.st==0?m2.a:m2.b,dd=Math.round(Math.hypot(t2.p.x-P.x,t2.p.z-P.z));$('mis').textContent='🚖 مشوار '+(S.mi+1)+': '+(S.st==0?(mv?'روح للراكب عند «'+m2.a.name+'» وقف جنبه':'اركب عربية (E) — راكب مستنيك عند «'+m2.a.name+'»'):(mv&&mv===paxCar?'وصّل الراكب إلى «'+m2.b.name+'» وقف عند العلامة':'الراكب مستنيك في عربيته — ارجع لها'))+' — '+dd+' م';
+ {let nv=$('nav');if(!nv){nv=document.createElement('div');nv.id='nav';nv.style.cssText='position:fixed;left:50%;top:calc(64px + env(safe-area-inset-top,0px));transform:translateX(-50%);text-align:center;pointer-events:none;z-index:3;font-size:13px';nv.innerHTML='<div id="nva" style="width:64px;height:84px;margin:0 auto;filter:drop-shadow(0 2px 4px #000)"><svg viewBox="0 0 64 84" width="64" height="84"><polygon points="32,2 62,44 42,44 42,82 22,82 22,44 2,44" fill="#ffd040" stroke="#111" stroke-width="4" stroke-linejoin="miter"/><polygon points="32,12 50,38 32,38" fill="#fff6"/></svg></div><div id="nvd" class="box" style="display:inline-block;padding:2px 8px"></div>';document.body.appendChild(nv)}
+ const ex=t2.p.x-P.x,ez=t2.p.z-P.z,an=Math.atan2(ex*Math.cos(yaw)-ez*Math.sin(yaw),-ex*Math.sin(yaw)-ez*Math.cos(yaw));$('nva').style.transform='rotate('+an+'rad)';$('nvd').textContent=dd+' م';nv.style.display=$('start').style.display=='none'?'block':'none'}
+ $('mon').textContent='💰 '+S.money+' ج';const h=S.time|0;$('clk').textContent=(h%12||12)+':'+String((S.time%1*60)|0).padStart(2,'0')+(h<12?' ص':' م')+(rv>.5?' 🌧':'');
 }
-
-
-/* ======================================================
-   PREVIOUS
-====================================================== */
-
-function previousVideo() {
-
-    currentVideo =
-        (currentVideo - 1 + videos.length) %
-        videos.length;
-
-    updateCarousel();
-
-}
-
-
-/* ======================================================
-   ARROWS
-====================================================== */
-
-document
-    .querySelector(".right")
-    .addEventListener("click", () => {
-
-        nextVideo();
-
-        resetAutoPlay();
-
-    });
-
-
-document
-    .querySelector(".left")
-    .addEventListener("click", () => {
-
-        previousVideo();
-
-        resetAutoPlay();
-
-    });
-
-
-/* ======================================================
-   AUTO PLAY
-====================================================== */
-
-let autoPlay =
-    setInterval(nextVideo, 5000);
-
-
-function resetAutoPlay() {
-
-    clearInterval(autoPlay);
-
-    autoPlay =
-        setInterval(nextVideo, 5000);
-
-}
-
-
-/* ======================================================
-   PHOTO GALLERY
-====================================================== */
-
-const gallery =
-    document.getElementById("gallery");
-
-
-photos.forEach(photo => {
-
-    const card =
-        document.createElement("div");
-
-
-    card.className =
-        "photo-card";
-
-
-    card.innerHTML = `
-
-        <img
-            src="${photo.file}"
-            alt="${photo.title}"
-            loading="lazy"
-        >
-
-        <div class="photo-overlay">
-
-            <span class="photo-number">
-                ${photo.number}
-            </span>
-
-            <h3>
-                ${photo.title}
-            </h3>
-
-        </div>
-
-    `;
-
-
-    gallery.appendChild(card);
-
-});
-
-
-/* ======================================================
-   START
-====================================================== */
-
-updateCarousel();
-
-
-/* ======================================================
-   KEYBOARD
-====================================================== */
-
-document.addEventListener("keydown", event => {
-
-    if (event.key === "ArrowRight") {
-
-        nextVideo();
-
-        resetAutoPlay();
-
-    }
-
-
-    if (event.key === "ArrowLeft") {
-
-        previousVideo();
-
-        resetAutoPlay();
-
-    }
-
-});
-
-
-</script>
-
-
-</body>
-</html>
-```
+setInterval(()=>{S.x=player.position.x;S.z=player.position.z;save()},4000);addEventListener('pagehide',save);
+let last=performance.now();(function loop(n){requestAnimationFrame(loop);const dt=Math.min(.05,(n-last)/1000);last=n;update(dt);R.render(scene,cam)})(last);
+</script></body></html>
